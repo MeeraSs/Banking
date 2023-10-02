@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Banker - Register
+{% endblock %}
+
+{% block content %}
+    <div class="row" style="max-height: 600px; overflow-y: auto; padding-bottom: 20px;">
+        <div class="col-md-8 offset-md-2">
+            <div class="mt-5 mt-lg-5">
+
+                <form action="{% url 'banking_app:details' %}" class="p-5 bg-white" method="post">
+                    {% csrf_token %}
+                    <h2 class="h4 text-center text-primary mb-5">Details Form</h2>
+
+                    <div class="form-group">
+                        <label class="text-black" for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" class="form-control" placeholder="Enter your Date of Birth">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="age">Age</label>
+                        <input type="text" id="age" name="age" class="form-control" placeholder="Age">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="gender">Gender</label>
+                        <select id="gender" name="gender" class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="phone_number">Phone Number</label>
+                        <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="mail_id">Mail ID</label>
+                        <input type="text" id="mail_id" name="mail_id" class="form-control" placeholder="Mail ID">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="address">Address</label>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Address">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="district">District</label>
+                        <select id="district" name="district" class="form-control">
+                            {% for dist in districts %}
+                                <option value="{{ dist.id }}">{{ dist.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+
+
+
+<!--                   <div class="form-group">-->
+<!--                        <label class="text-black" for="branch">Branch</label>-->
+<!--                        <select id="branch" name="branch" class="form-control">-->
+<!--                            {% for branch in branches %}-->
+<!--                                <option value="{{ branch.id }}">{{ branch.name }}</option>-->
+<!--                            {% endfor %}-->
+<!--                        </select>-->
+<!--                   </div>-->
+
+                    <div class="form-group">
+                        <label class="text-black" for="branch">Branch</label>
+                        <select id="branch" name="branch" class="form-control">
+                            {% for brnch in branchess %}-->
+                                <option value="{{ brnch.id }}">{{ brnch.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black" for="account">Account Type</label>
+                        <select id="account" name="account" class="form-control">
+                            <option value="savings">Savings Account</option>
+                            <option value="current">Current Account</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-black">Materials Provide</label>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="debitCard" name="materials_provide" value="debit_card">
+                            <label class="form-check-label" for="debitCard">Debit Card</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="creditCard" name="materials_provide" value="credit_card">
+                            <label class="form-check-label" for="creditCard">Credit Card</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="chequeBook" name="materials_provide" value="cheque_book">
+                            <label class="form-check-label" for="chequeBook">Cheque Book</label>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                    </div>
+
+
+                </form>
+                <a href="{% url 'banking_app:home' %}" class="nav-link">Home</a>
+            </div>
+        </div>
+    </div>
+
+{% if messages %}
+                <div class="alert alert-info">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+{% endif %}
+<a href="{% url 'banking_app:home' %}" class="nav-link">Home</a>
+{% endblock %}
